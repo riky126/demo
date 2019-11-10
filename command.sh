@@ -13,7 +13,7 @@ gcloud container clusters create kubecluster
 
 #[step4]
 #   -Run image on created cluster as application
-kubectl run kubecluster --image=kubernetes-demo-80227/cicd-demo:v1 --port=8080 
+kubectl run kubecluster --image=kubernetes-demo-80227/cicd-demo:v1 --port=8000 
 
 #[step5]
 #   -Expose Cluster deployment to pulic
