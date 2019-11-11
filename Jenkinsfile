@@ -28,9 +28,9 @@ pipeline {
                 
                 }
                 script{
-                def doesJavaRock = input(message: 'Do you like Java?', ok: 'Yes', 
+                def doesJavaRock = input(message: 'Deploy Image to Production?', ok: 'Yes', 
                         parameters: [booleanParam(defaultValue: true, 
-                        description: 'If you like Java, just push the button',name: 'Yes?')])
+                        description: 'Do you to deploy Docker image to Production Server',name: 'Yes?')])
                 }
 
                 /*withCredentials([string(credentialsId: 'docker-hub', variable: 'dockerHubPwd')]) {
