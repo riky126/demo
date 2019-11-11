@@ -2,13 +2,17 @@ pipeline {
     agent any
     environment{
         DOCKER_TAG = getDockerTag()
+
+        //dockerHome = '/usr/local/Cellar/docker/19.03.4'
     }
     stages{
         stage('Initialize')
         {   
+            steps{
             def dockerHome = tool 'docker'
             //def mavenHome  = tool 'MyMaven ${mavenHome}/bin:'
             env.PATH = "${dockerHome}/bin:${env.PATH}"
+                }  
         }
 
         stage('Build Docker Image'){
