@@ -2,12 +2,6 @@ pipeline {
     agent any
     environment{
         DOCKER_TAG = getDockerTag()
-
-        dockerHome = '/Applications/Docker.app/Contents/Resources/bin/'
-
-        //def dockerHome = tool 'docker'
-        //def mavenHome  = tool 'MyMaven ${mavenHome}/bin:'
-         env.PATH = "${dockerHome}/bin:${env.PATH}"
     }
 
         stage('Build Docker Image'){
