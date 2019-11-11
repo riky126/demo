@@ -3,13 +3,13 @@ pipeline {
     environment{
         DOCKER_TAG = getDockerTag()
 
-        //dockerHome = '/usr/local/Cellar/docker/19.03.4'
+        dockerHome = '/usr/local/Cellar/docker/19.03.4'
     }
     stages{
         stage('Initialize')
         {   
             steps{
-                def dockerHome = tool 'docker'
+                //def dockerHome = tool 'docker'
                 //def mavenHome  = tool 'MyMaven ${mavenHome}/bin:'
                 env.PATH = "${dockerHome}/bin:${env.PATH}"
             }  
