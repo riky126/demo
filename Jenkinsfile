@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment{
         DOCKER_TAG = getDockerTag()
-    }
+    
 
         stage('Build Docker Image'){
             steps{
@@ -34,7 +34,7 @@ pipeline {
                 }
             }
         }*/
-    
+    }
 }
 
 def getDockerTag(){
