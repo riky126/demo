@@ -24,7 +24,7 @@ pipeline {
                     sh 'echo uname=$USERNAME pwd=$PASSWORD'
                     sh "docker login -u riky126 -p ${PASSWORD}"
                     sh "docker push riky/cicd-demo:${DOCKER_TAG}"
-                    }
+                
                 }
 
                 /*withCredentials([string(credentialsId: 'docker-hub', variable: 'dockerHubPwd')]) {
