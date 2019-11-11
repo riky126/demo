@@ -7,8 +7,8 @@ pipeline {
         stage('Initialize')
         {   
             def dockerHome = tool 'docker'
-            //def mavenHome  = tool 'MyMaven'
-            env.PATH = "${dockerHome}/bin:${mavenHome}/bin:${env.PATH}"
+            //def mavenHome  = tool 'MyMaven ${mavenHome}/bin:'
+            env.PATH = "${dockerHome}/bin:${env.PATH}"
         }
 
         stage('Build Docker Image'){
