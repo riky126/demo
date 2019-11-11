@@ -27,6 +27,11 @@ pipeline {
                     //sh "docker push riky/cicd-demo:${DOCKER_TAG}"
                 
                 }
+                script{
+                def doesJavaRock = input(message: 'Do you like Java?', ok: 'Yes', 
+                        parameters: [booleanParam(defaultValue: true, 
+                        description: 'If you like Java, just push the button',name: 'Yes?')])
+                }
 
                 /*withCredentials([string(credentialsId: 'docker-hub', variable: 'dockerHubPwd')]) {
                     sh "docker login -u riky126 -p ${dockerHubPwd}"
