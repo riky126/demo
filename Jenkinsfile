@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage('Build Docker Image'){
             steps{
-                sh "docker build . -t riky126/cicd-demo:7ebd7ea720707be8ccaa8640e855bf936aabe577"
+                sh "docker build . -t ${DOCKER_TAG}"
             }
         }
         stage('DockerHub Push'){
@@ -23,7 +23,7 @@ pipeline {
 
                     sh 'echo uname=$USERNAME pwd=$PASSWORD'
                     sh "docker login -u ${USERNAME} -p ${PASSWORD}"
-                    sh "docker push riky/cicd-demo:7ebd7ea720707be8ccaa8640e855bf936aabe577"
+                    sh "docker push riky/cicd-demo:${DOCKER_TAG}"
                     //sh "docker push riky/cicd-demo:${DOCKER_TAG}"
                 
                 }
