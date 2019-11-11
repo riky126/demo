@@ -1,9 +1,21 @@
 pipeline {
-    agent any
+    agent {
+        label 'docker' 
+    }
+
+    
     environment{
         DOCKER_TAG = getDockerTag()
     }
     stages{
+
+        /*stage('Initialize')
+        {   
+            def dockerHome = tool 'MyDocker'
+            def mavenHome  = tool 'MyMaven'
+            env.PATH = "${dockerHome}/bin:${mavenHome}/bin:${env.PATH}"
+        }*/
+
         stage('Build Docker Image'){
             steps{
                 sh "docker build . -t riky126/cicd-demo:${DOCKER_TAG} "
