@@ -17,10 +17,20 @@ pipeline {
         }
         stage('DockerHub Push'){
             steps{
-                withCredentials([string(credentialsId: 'docker-hub', variable: 'dockerHubPwd')]) {
+
+                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'docker-hub',
+                    usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
+
+                    sh 'echo uname=$USERNAME pwd=$PASSWORD'
+                    sh "docker login -u riky126 -p ${PASSWORD}"
+                    sh "docker push riky/cicd-demo:${DOCKER_TAG}"
+                    }
+                }
+
+                /*withCredentials([string(credentialsId: 'docker-hub', variable: 'dockerHubPwd')]) {
                     sh "docker login -u riky126 -p ${dockerHubPwd}"
                     sh "docker push riky/cicd-demo:${DOCKER_TAG}"
-                }
+                }*/
             }
         }
         /*
