@@ -38,10 +38,12 @@ pipeline {
         stage('Deploy to GKE'){
             steps{
                 
-                try {
-                    sh "kubectl set image deployment/kubecluster kubecluster=riky126/cicd-demo:${DOCKER_TAG}"
-                catch(all) {
-                    sh "gcloud container clusters get-credentials kubecluster"
+                script{
+                    try{
+                        sh "gcloud container clusters get-credentials kubecluster"
+                    }catch(error){
+                        sh "kubectl set image deployment/kubecluster kubecluster=riky126/cicd-demo:${DOCKER_TAG}"
+                    }
                 }
                 //sh 'kubectl set image kubecluster kubecluster=riky126/cicd-demo:${DOCKER_TAG}'
             }
