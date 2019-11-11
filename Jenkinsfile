@@ -3,17 +3,12 @@ pipeline {
     environment{
         DOCKER_TAG = getDockerTag()
 
-        dockerHome = '/usr/local/Cellar/docker/19.03.4'
+        dockerHome = '/Applications/Docker.app/Contents/Resources/bin/'
+
+        //def dockerHome = tool 'docker'
+        //def mavenHome  = tool 'MyMaven ${mavenHome}/bin:'
+         env.PATH = "${dockerHome}/bin:${env.PATH}"
     }
-    stages{
-        stage('Initialize')
-        {   
-            steps{
-                //def dockerHome = tool 'docker'
-                //def mavenHome  = tool 'MyMaven ${mavenHome}/bin:'
-                env.PATH = "${dockerHome}/bin:${env.PATH}"
-            }  
-        }
 
         stage('Build Docker Image'){
             steps{
