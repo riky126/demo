@@ -22,7 +22,7 @@ pipeline {
                     usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
 
                     sh 'echo uname=$USERNAME pwd=$PASSWORD'
-                    sh "docker login -u riky126 -p ${PASSWORD}"
+                    sh "docker login -u ${USERNAME} -p ${PASSWORD}"
                     sh "docker push riky/cicd-demo:${DOCKER_TAG}"
                     //sh "docker push riky/cicd-demo:${DOCKER_TAG}"
                 
