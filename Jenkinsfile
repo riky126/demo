@@ -30,7 +30,7 @@ pipeline {
                 script{
                 def doesJavaRock = input(message: 'Deploy Image to Production?', ok: 'Yes', 
                         parameters: [booleanParam(defaultValue: true, 
-                        description: 'Do you to deploy Docker image to Production Server',name: 'Yes?')])
+                        description: 'Do you to deploy Docker image to Production Server',name: 'Deploy?')])
                 }
 
                 /*withCredentials([string(credentialsId: 'docker-hub', variable: 'dockerHubPwd')]) {
