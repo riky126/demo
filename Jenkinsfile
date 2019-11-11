@@ -35,7 +35,7 @@ pipeline {
             }
         }
 
-        stage('Deploy to GKE'){
+        stage('Deploy To Google Kubertenes Engine(GKE)'){
             steps{
                 
                 script{
