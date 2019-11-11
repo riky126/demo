@@ -34,6 +34,14 @@ pipeline {
                 }*/
             }
         }
+        stage () {
+            steps('Deploy to GKE') {
+                //kubectl --user="kube-user" --server="https://kubemaster.example.com"  --token=$ACCESS_TOKEN set image deployment/my-deployment mycontainer=myimage:"$BUILD_NUMBER-$SHORT_GIT_COMMIT"
+                sh 'gcloud container clusters get-credentials kubecluster'
+                sh "kubectl set image deployment/kubecluster kubecluster=riky126/cicd-demo:${PASSWORD}"
+                //sh 'kubectl set image kubecluster kubecluster=riky126/cicd-demo:${DOCKER_TAG}'
+            }
+        }
         /*
         stage('Deploy to GKE'){
             steps{
