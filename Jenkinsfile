@@ -4,13 +4,12 @@ pipeline {
         DOCKER_TAG = getDockerTag()
     }
     stages{
-
-        /*stage('Initialize')
+        stage('Initialize')
         {   
-            def dockerHome = tool 'MyDocker'
-            def mavenHome  = tool 'MyMaven'
-            env.PATH = "${dockerHome}/bin:${mavenHome}/bin:${env.PATH}"
-        }*/
+            def dockerHome = tool 'docker'
+            //def mavenHome  = tool 'MyMaven ${mavenHome}/bin:'
+            env.PATH = "${dockerHome}/bin:${env.PATH}"
+        }
 
         stage('Build Docker Image'){
             steps{
