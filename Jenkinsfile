@@ -16,15 +16,17 @@ pipeline {
             }
         }
         stage ("Unit Testing") {
-            parallel (
-                "UITest" : {
-                    echo "UI Test is running..."
-                },
-                "BackendTest" : {
-                    echo "Backend Test is running..."
-                    //sh "run-tests.sh"
-                }
-            )
+            steps {
+                parallel (
+                    "UITest" : {
+                        echo "UI Test is running..."
+                    },
+                    "BackendTest" : {
+                        echo "Backend Test is running..."
+                        //sh "run-tests.sh"
+                    }
+                )
+            }
         }
         stage('DockerHub Push'){
             steps{
