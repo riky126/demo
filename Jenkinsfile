@@ -15,6 +15,24 @@ pipeline {
                 sh "docker build . -t riky126/cicd-demo:${DOCKER_TAG}"
             }
         }
+        stage ("Unit Testing") {
+            parallel {
+                stage('UI Test') {
+                    //agent { label "windows" }
+                    steps {
+                        //bat "run-tests.bat"
+                        echo "UI Test is running..."
+                    }
+                }
+                stage('Backend Test') {
+                    //agent { label "linux" }
+                    steps {
+                        echo "Backend Test is running..."
+                        //sh "run-tests.sh"
+                    }
+                }
+            }
+        }
         stage('DockerHub Push'){
             steps{
 
