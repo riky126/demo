@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: kubecluster
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: kubecluster
+    spec:
+      containers:
+        - name: kubecluster
+          image: riky126/cicd-demo:v1
+          ports:
+            - containerPort: 8080
