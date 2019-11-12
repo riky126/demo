@@ -16,16 +16,20 @@ pipeline {
             }
         }
         stage ("Unit Testing") {
-            steps {
+           
                 // Takes a map from branch names to closures and an optional argument failFast
 // which will terminate all branches upon a failure in any other branch:
 parallel firstBranch: {
     // do something
+     steps {
+
+     }
 }, secondBranch: {
     // do something else
+     steps {}
 },
 failFast: true|false
-            }
+            
         }
         stage('DockerHub Push'){
             steps{
