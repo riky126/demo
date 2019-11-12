@@ -3,25 +3,58 @@ pipeline {
     environment{
         DOCKER_TAG = getDockerTag()
 
-        dockerHome = '/usr/local/Cellar/docker/19.03.4'
+        //dockerHome = '/Applications/Docker.app/Contents/Resources/bin/'
+
         //def dockerHome = tool 'docker'
         //def mavenHome  = tool 'MyMaven ${mavenHome}/bin:'
-         env.PATH = "${dockerHome}/bin:${env.PATH}"
+        //env.PATH = "${dockerHome}/bin:${env.PATH}"
     }
-    stages{
+    stages {
         stage('Build Docker Image'){
             steps{
-                sh "docker build . -t riky126/cicd-demo:${DOCKER_TAG} "
+                sh "docker build . -t riky126/cicd-demo:${DOCKER_TAG}"
             }
         }
         stage('DockerHub Push'){
             steps{
-                withCredentials([string(credentialsId: 'docker-hub', variable: 'dockerHubPwd')]) {
+
+                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'docker-hub',
+                    usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
+
+                    sh 'echo uname=$USERNAME pwd=$PASSWORD'
+                    sh "docker login -u ${USERNAME} -p ${PASSWORD}"
+                    sh "docker push riky126/cicd-demo:${DOCKER_TAG}"
+                    //sh "docker push riky/cicd-demo:${DOCKER_TAG}"
+                
+                }
+                script{
+                def doesJavaRock = input(message: 'Deploy Image to Production?', ok: 'Yes', 
+                        parameters: [booleanParam(defaultValue: true, 
+                        description: 'Do you to deploy Docker image to Production Server',name: 'Deploy?')])
+                }
+
+                /*withCredentials([string(credentialsId: 'docker-hub', variable: 'dockerHubPwd')]) {
                     sh "docker login -u riky126 -p ${dockerHubPwd}"
                     sh "docker push riky/cicd-demo:${DOCKER_TAG}"
-                }
+                }*/
             }
         }
+
+        stage('Deploy To Google Kubernetes Engine(GKE)'){
+            steps{
+                
+                script{
+                    try{
+                        sh "kubectl set image deployment/kubecluster kubecluster=riky126/cicd-demo:${DOCKER_TAG}"
+            
+                    }catch(error){
+                        sh "gcloud container clusters get-credentials kubecluster"
+                    }
+                }
+                //sh 'kubectl set image kubecluster kubecluster=riky126/cicd-demo:${DOCKER_TAG}'
+            }
+        }
+       
         /*
         stage('Deploy to GKE'){
             steps{
