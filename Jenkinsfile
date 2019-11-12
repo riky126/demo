@@ -16,22 +16,15 @@ pipeline {
             }
         }
         stage ("Unit Testing") {
-            parallel {
-                stage('UI Test') {
-                    //agent { label "windows" }
-                    steps {
-                        //bat "run-tests.bat"
-                        echo "UI Test is running..."
-                    }
+            parallel (
+                "UITest" : {
+                    echo "UI Test is running..."
+                },
+                "BackendTest" : {
+                    echo "Backend Test is running..."
+                    //sh "run-tests.sh"
                 }
-                stage('Backend Test') {
-                    //agent { label "linux" }
-                    steps {
-                        echo "Backend Test is running..."
-                        //sh "run-tests.sh"
-                    }
-                }
-            }
+            )
         }
         stage('DockerHub Push'){
             steps{
