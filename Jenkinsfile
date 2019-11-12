@@ -17,15 +17,14 @@ pipeline {
         }
         stage ("Unit Testing") {
             steps {
-                parallel (
-                    "UITest" : {
-                        echo "UI Test is running..."
-                    },
-                    "BackendTest" : {
-                        echo "Backend Test is running..."
-                        //sh "run-tests.sh"
-                    }
-                )
+                // Takes a map from branch names to closures and an optional argument failFast
+// which will terminate all branches upon a failure in any other branch:
+parallel firstBranch: {
+    // do something
+}, secondBranch: {
+    // do something else
+},
+failFast: true|false
             }
         }
         stage('DockerHub Push'){
