@@ -1,0 +1,1 @@
+sed "s/tagVersion/$1/g" ./demo-chart/values.yaml > demo-chart/values-prod.yml

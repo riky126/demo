@@ -59,6 +59,9 @@ pipeline {
                 script{
                     try{
                         sh "kubectl set image deployment/kubecluster kubecluster=riky126/cicd-demo:${DOCKER_TAG}"
+
+                        //sh "chmod +x changeTag.sh"
+                        //sh "./changeTag.sh ${DOCKER_TAG}"
             
                     }catch(error){
                         sh "gcloud container clusters get-credentials kubecluster"
