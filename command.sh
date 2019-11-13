@@ -33,6 +33,12 @@ kubectl get services kubecluster
 #delete cluster
 gcloud container clusters delete kubecluster
 
+#Scale Cluster
+gcloud container node-pools list --cluster [ClUSTER-NAME]
+
+gcloud container clusters resize [CLUSTER_NAME] --node-pool [POOL_NAME] \
+    --num-nodes [NUM_NODES]
+
 #delete 
 
 #Helm setup
