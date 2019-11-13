@@ -33,7 +33,34 @@ kubectl get services kubecluster
 #delete cluster
 gcloud container clusters delete kubecluster
 
+#Scale Cluster
+gcloud container node-pools list --cluster [ClUSTER-NAME]
+
+gcloud container clusters resize [CLUSTER_NAME] --node-pool [POOL_NAME] \
+    --num-nodes [NUM_NODES]
+
 #delete 
+
+#Helm setup
+#Tiller in kubernetes as a ServiceAccount
+kubectl apply -f <filename.yaml>
+#initialise helm
+helm init --service-account helm
+#verify helm
+kubectl get deploy,svc tiller-deploy -n kube-system
+
+# Helm delete
+helm del --purge <clustername>
+
+helm del <chartname>
+
+helm install --name helm-demo ./demo-chart --set service.type=LoadBalancer
+
+helm upgrade helm-cluster ./demo-chart
+
+helm history <chartname>
+
+helm rollback <chartname> [REVISION]
 
 CODE:
 kill all running containers with docker kill $(docker ps -q)
