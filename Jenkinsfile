@@ -60,8 +60,8 @@ pipeline {
                     try{
                         //sh "kubectl set image deployment/kubecluster kubecluster=riky126/cicd-demo:${DOCKER_TAG}"
 
-                        sh "chmod +x ./dome-chart/change-docker-tag.sh"
-                        sh "./dome-chart/change-docker-tag.sh ${DOCKER_TAG}"
+                        sh "chmod +x /Users/machine2/Developer/demo/dome-chart/change-docker-tag.sh"
+                        sh "/Users/machine2/Developer/demo/dome-chart/change-docker-tag.sh ${DOCKER_TAG}"
                         sh "helm upgrade helm-cluster ./demo-chart"
             
                     }catch(error){
