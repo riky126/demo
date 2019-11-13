@@ -46,6 +46,8 @@ kubectl get deploy,svc tiller-deploy -n kube-system
 # Helm delete
 helm del --purge <clustername>
 
+helm del <chartname>
+
 helm install --name helm-demo ./demo-chart --set service.type=LoadBalancer
 
 helm upgrade helm-cluster ./demo-chart
