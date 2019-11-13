@@ -35,6 +35,14 @@ gcloud container clusters delete kubecluster
 
 #delete 
 
+#Helm setup
+#Tiller in kubernetes as a ServiceAccount
+kubectl apply -f <filename.yaml>
+#initialise helm
+helm init --service-account helm
+#verify helm
+kubectl get deploy,svc tiller-deploy -n kube-system
+
 CODE:
 kill all running containers with docker kill $(docker ps -q)
 delete all stopped containers with docker rm $(docker ps -a -q)
