@@ -52,6 +52,10 @@ helm install --name helm-demo ./demo-chart --set service.type=LoadBalancer
 
 helm upgrade helm-cluster ./demo-chart
 
+helm history <chartname>
+
+helm rollback <chartname> [REVISION]
+
 CODE:
 kill all running containers with docker kill $(docker ps -q)
 delete all stopped containers with docker rm $(docker ps -a -q)
