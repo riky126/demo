@@ -42,7 +42,7 @@ gcloud container clusters resize [CLUSTER_NAME] --node-pool [POOL_NAME] \
 #delete 
 
 #Helm setup
-#Tiller in kubernetes as a ServiceAccount
+#Tiller in kubernetes as a ServiceAccount 
 kubectl apply -f <filename.yaml>
 #initialise helm
 helm init --service-account helm
