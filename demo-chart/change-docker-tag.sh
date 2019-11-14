@@ -1,3 +1,3 @@
 echo $1
 
-sed "s/tagVersion/$1/g" ./values-frame.yaml > ./values.yaml
+sed "s/tagVersion/$1/g" ./demo-chart/values-frame.yaml > ./demo-chart/values.yaml
