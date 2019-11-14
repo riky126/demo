@@ -1,3 +1,3 @@
-echo "asdfasdf"
+echo tagVersion
 
-sed "s/tagVersion/$1/g" ./values-frame.yaml > ./values.yml
+sed "s/tagVersion/$1/g" ./values-frame.yml > ./values.yml
