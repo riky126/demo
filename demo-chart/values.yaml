@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   repository: riky126/cicd-demo
-  tag: tagVersion
+  tag: 24ee6753a568b96d8c729e312e746bb3578d15da
   pullPolicy: IfNotPresent #| Always
 
 imagePullSecrets: []
